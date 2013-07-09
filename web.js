@@ -1,9 +1,15 @@
 var express = require('express');
+var fs = require('fs');
 
 var app = express.createServer(express.logger());
 
+var Buffer = fs.readFileSync ('index.html');
+
+console.log('before calling send buffer');
+
 app.get('/', function(request, response) {
-  response.send('Hello World! - this is my first upate after deployemnt');
+   response.send(Buffer.toString("utf-8"));
+   
 });
 
 var port = process.env.PORT || 5000;
